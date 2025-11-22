@@ -5,8 +5,14 @@ import Link from "next/link";
 export default function EventCard({event}: {event: EventoEvent}) {
     return (
         <Link href={`/event/${event.slug}`} className="flex-1 basis-80 w-[400px] h-[300px] " >
-            <section className="h-full w-full flex flex-col mb-6 border p-4 rounded shadow hover:scale-[1.03] active:scale-[1.015] transition-transform duration-200 ease-in-out relative">
-                <Image src={event.imageUrl} alt={event.name} width={400} height={200} className="w-full h-auto rounded"/>
+            <section className="h-full w-full flex flex-col mb-6 border p-4 rounded-xl overflow-hidden shadow state-effects relative">
+                <Image 
+                    src={event.imageUrl} 
+                    alt={event.name} 
+                    width={400} 
+                    height={200} 
+                    className="w-full h-auto rounded"
+                />
                 <div className="flex flex-col flex-1 justify-center">
                     <h2 className="text-xl font-semibold mb-2">{event.name}</h2>    
                     <p className="text-gray-600">Date: {event.organizerName}</p>

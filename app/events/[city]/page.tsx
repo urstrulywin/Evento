@@ -1,14 +1,17 @@
 import EventList from "@/components/event-list";
 import H1 from "@/components/h1";
 import { EventoEvent } from "@/lib/types";
+import { sleep } from "@/lib/utils";
 
 interface EventsPageParams {
     params: Promise<{ city: string }>;
 }
 
-export default async function CityEventPage({ params }: EventsPageParams ) {
+export default async function EventsPage({ params }: EventsPageParams ) {
     const { city } = await params; // ← unwrap the Promise
 
+    // Simulate network delay for demo purposes
+    await sleep(2000);
     const response = await fetch(
         `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`
     );
