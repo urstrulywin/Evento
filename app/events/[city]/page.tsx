@@ -1,13 +1,25 @@
-import EventList from "@/components/event-list";
+import EventList from "@/components/events-list";
 import H1 from "@/components/h1";   
 import { Suspense } from "react";
 import Loading from "./loading";
+import { capitalizeFirstLetter } from "@/lib/utils";
+import { Metadata } from "next";
 
-interface EventsPageParams {
+interface EventsProps {
     params: Promise<{ city: string }>;
 }
 
-export default async function EventsPage({ params }: EventsPageParams ) {
+export async function generateMetadata({ params }: EventsProps) : Promise<Metadata> {
+    const { city } = await params;
+    const titleCity = capitalizeFirstLetter(city);
+
+    return {
+        title: city === 'all' ? 'All Events' : `Events in ${titleCity}`,
+        description: city === 'all' ? 'Browse all events' : `Browse events in ${titleCity}`,
+    };
+}
+
+export default async function EventsPage({ params }: EventsProps) {
     const { city } = await params; // ← unwrap the Promise
 
     if (!city) {

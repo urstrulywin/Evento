@@ -1,12 +1,33 @@
 import H1 from "@/components/h1";
-import { sleep } from "@/lib/utils";
+import { capitalizeFirstLetter, sleep } from "@/lib/utils";
+import { Metadata } from "next";
 import Image from "next/image";
 
-export default async function CityEventPage({params}: {params: {slug: string}}) {
+interface EventSlug {
+    params: Promise<{ slug: string }>;
+} 
+
+export async function generateMetadata({ params }: EventSlug) : Promise<Metadata>{
+    const { slug } = await params;
+
+    const response = await fetch(
+      `https://bytegrad.com/course-assets/projects/evento/api/events?city=${slug}`
+    );
+    const event = await response.json()
+    console.log(event);
+
+    return {
+        title: event.name,
+    };
+}
+
+export default async function CityEventPage({params}: EventSlug) {
+  const { slug } = await params;
+
   // Simulate network delay for demo purposes
-  await sleep(2000);
+  // await sleep(2000);
   const response = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${params.slug}`
+    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${slug}`
   );
   const event = await response.json()
   console.log(event);
