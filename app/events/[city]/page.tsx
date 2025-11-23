@@ -1,7 +1,7 @@
 import EventList from "@/components/event-list";
-import H1 from "@/components/h1";
-import { EventoEvent } from "@/lib/types";
-import { sleep } from "@/lib/utils";
+import H1 from "@/components/h1";   
+import { Suspense } from "react";
+import Loading from "./loading";
 
 interface EventsPageParams {
     params: Promise<{ city: string }>;
@@ -10,21 +10,6 @@ interface EventsPageParams {
 export default async function EventsPage({ params }: EventsPageParams ) {
     const { city } = await params; // ← unwrap the Promise
 
-    // Simulate network delay for demo purposes
-    await sleep(2000);
-    const response = await fetch(
-        `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`
-    );
-
-    if (!response.ok) {
-        const text = await response.text();
-        console.error("API error:", text);
-        throw new Error(`API returned ${response.status}`);
-    }
-
-    const events : EventoEvent[] = await response.json();
-    console.log(events);
-  
     if (!city) {
         return (
         <main className="container mx-auto px-4 py-8">
@@ -39,9 +24,11 @@ export default async function EventsPage({ params }: EventsPageParams ) {
     return (
         <main className="container flex flex-col items-center px-4 py-8">
             <H1>
-                {title === 'all' ? 'All Events' : `Events in ${title}`}
-            </H1>            
-            <EventList events={events} />        
+                {city === 'all' ? 'All Events' : `Events in ${title}`}
+            </H1>
+            <Suspense fallback={<Loading/>}>
+                <EventList city={title}/>        
+            </Suspense>         
         </main>
     );
 }
