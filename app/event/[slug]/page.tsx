@@ -1,5 +1,6 @@
 import H1 from "@/components/h1";
-import { capitalizeFirstLetter, sleep } from "@/lib/utils";
+import { EventoEvent } from "@/lib/types";
+import { capitalizeFirstLetter, getEvent, sleep } from "@/lib/utils";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -10,11 +11,7 @@ interface EventSlug {
 export async function generateMetadata({ params }: EventSlug) : Promise<Metadata>{
     const { slug } = await params;
 
-    const response = await fetch(
-      `https://bytegrad.com/course-assets/projects/evento/api/events?city=${slug}`
-    );
-    const event = await response.json()
-    console.log(event);
+    const event = await getEvent(slug);
 
     return {
         title: event.name,
@@ -26,11 +23,8 @@ export default async function CityEventPage({params}: EventSlug) {
 
   // Simulate network delay for demo purposes
   // await sleep(2000);
-  const response = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${slug}`
-  );
-  const event = await response.json()
-  console.log(event);
+  const event = await getEvent(slug);
+
   return (
     <main >
       <section className="relative w-full overflow-hidden flex items-center justify-center py-15 md:py-20">
