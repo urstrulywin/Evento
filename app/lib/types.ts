@@ -1,9 +1,9 @@
 export type EventoEvent = {
-    id: string;
+    id: number;
     name: string;
     slug: string;
     city: string;
-    date: string;
+    date: Date;
     location: string;
     organizerName: string;
     imageUrl: string;
