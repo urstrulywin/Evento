@@ -5,26 +5,34 @@ import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 
 export async function getEvents(city: string): Promise<EventoEvent[]> {
+
   //const events = await prisma.eventoEvent.findMany();
-  const events = await prisma.eventoEvent.findMany({
-    where: { 
-      city: {  
-        equals: city=== "all" ? undefined : city,
-        // equals: capitalizeFirstLetter(city),
-        mode: "insensitive",
-      }
-    },
+
+  console.log("City:", city);
+
+  const events = await prisma.eventoEvent.findMany({ // findMany never returns null, only an array.
+    where: city === "all"
+      ? {}   // no filter
+      : {
+          city: {
+            equals: city,
+            mode: "insensitive",
+          },
+        },
     orderBy: { date: "asc" },
   });
+  if (events.length === 0) {
+    notFound();           // ⬅️ will show /events/not-found.tsx if you have one
+  }
   return events;
 }
 
 export async function getEvent(slug: string): Promise<EventoEvent | null> {
-  const event =  prisma.eventoEvent.findUnique({
+  const event = await prisma.eventoEvent.findUnique({
     where: { slug },
   });
   if(!event) {
-    return notFound();
+    notFound();
   }
   return event;
 }

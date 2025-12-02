@@ -13,6 +13,12 @@ export async function generateMetadata({ params }: EventSlug) : Promise<Metadata
 
     const event = await getEvent(slug);
 
+    if(!event) {
+        return {
+            title: "Event Not Found",
+        };
+    }
+
     return {
         title: event.name,
     };
@@ -24,6 +30,15 @@ export default async function CityEventPage({params}: EventSlug) {
   // Simulate network delay for demo purposes
   // await sleep(2000);
   const event = await getEvent(slug);
+
+  if(!event) {
+    return (
+      <main className="flex flex-col items-center justify-center min-h-screen px-5 text-center">  
+        <H1 className="text-4xl mb-4">Event Not Found</H1>
+        <p className="text-lg text-white/75 max-w-2xl">Sorry, we couldn't find the event you're looking for. Please check the URL or return to the homepage.</p>
+      </main>
+    );
+  }
 
   return (
     <main >
