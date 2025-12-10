@@ -53,7 +53,7 @@ export default async function CityEventPage({params}: EventSlug) {
           // height={400} 
           priority
         />
-        <div className="relative z-1 flex gap-6 lg:gap-x-12 flex-col lg:flex-row items-center">
+        <div className="relative z-1 flex gap-6 lg:gap-x-12 flex-col md:flex-row items-center">
           <Image 
             src={event.imageUrl} 
             alt={event.name} 
@@ -63,20 +63,20 @@ export default async function CityEventPage({params}: EventSlug) {
             sizes="(max-width: 600px) 100vw, 600px" 
             // priority
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col sm:items-center md:items-start">
             {/* display date of event */}
-            <p className="text-white/75">
+            <p className= "text-white/75">
               {new Date(event.date).toLocaleDateString('en-US', {
-                weekday: 'long',
+                weekday: 'short',
                 year: 'numeric',
-                month: 'long',
+                month: 'short',
                 day: 'numeric',
               })}
             </p>
-            <H1 className="text-center mt-4 whitespace-nowrap lg:text-5xl">{event.name}</H1>
-            <p className="italic whitespace-nowrap text-xl text-white/75"> Organized by <span>{event.organizerName}</span> </p>
-            <p className="text-center text-white drop-shadow-lg">{event.location}</p>
-            <button className=" bg-white/20 text-lg mt-5 lg:mt-auto capitalize width-[95vw] sm:w-full rounded-md border-white/20 border-2 bg-blur state-effects"> Get Tickets </button>
+            <H1 className="py-2 whitespace-nowrap lg:text-5xl">{event.name}</H1>
+            <p className="pb-1 italic whitespace-nowrap text-xl text-white/75"> Organized by <span>{event.organizerName}</span> </p>
+            <p className="text-white drop-shadow-lg">{event.location}</p>
+            <button className=" bg-white/20 text-lg p-1 mt-5 capitalize w-[95vw] sm:w-full rounded-md border-white/20 border-2 bg-blur state-effects"> Get Tickets </button>
           </div>
         </div>
       </section>
