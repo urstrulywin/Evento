@@ -50,7 +50,7 @@ export default async function CityEventPage({params}: EventSlug) {
           quality={50}
           fill 
           sizes="(max-width: 1280px) 100vw, 1280px" 
-          height={400} 
+          // height={400} 
           priority
         />
         <div className="relative z-1 flex gap-6 lg:gap-x-12 flex-col lg:flex-row items-center">
