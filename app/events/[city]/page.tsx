@@ -26,10 +26,14 @@ const pageNumberSchema = z.coerce.number().int().min(1).catch(1).optional();
 
 export default async function EventsPage({ params, searchParams }: EventsProps) {
     const { city } = await params; // ← unwrap the Promise
-    const parsedPage = pageNumberSchema.safeParse(await searchParams);
-    if(!parsedPage.success) {
-        throw new Error("Invalid page number");
-    }
+    
+    const search = await searchParams;
+    // Extract only the page value
+    const rawPage =
+    Array.isArray(search.page) ? search.page[0] : search.page;
+
+    // Now parse the correct value
+    const page = pageNumberSchema.parse(rawPage);    
 
     if (!city) {
         return (
@@ -47,8 +51,8 @@ export default async function EventsPage({ params, searchParams }: EventsProps) 
             <H1 className="p-6">
                 {city === 'all' ? 'All Events' : `Events in ${title}`}
             </H1>
-            <Suspense key={parsedPage.data} fallback={<Loading/>}>
-                <EventList city={city} page={parsedPage.data}/>        
+            <Suspense key={page} fallback={<Loading/>}>
+                <EventList city={city} page={page}/>        
             </Suspense>         
         </main>
     );
