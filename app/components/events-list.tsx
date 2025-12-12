@@ -5,10 +5,10 @@ import Pagination from "./pagination";
 
 interface EventsListProps {
     city: string;
-    page: number;
+    page?: number;
 }
 
-export default async function EventList({city, page}: EventsListProps) {
+export default async function EventList({city, page=1}: EventsListProps) {
     // Simulate network delay for demo purposes
     // await sleep(2000);
     const {events, eventCount} = await getEvents(city, page)
