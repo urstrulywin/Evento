@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/client-utils";
 
 export default function Skeleton({className}: {className?: string}) {
   return (

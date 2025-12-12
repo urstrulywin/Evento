@@ -2,7 +2,7 @@ import EventList from "@/components/events-list";
 import H1 from "@/components/h1";   
 import { Suspense } from "react";
 import Loading from "./loading";
-import { capitalizeFirstLetter } from "@/lib/utils";
+import { capitalizeFirstLetter } from "@/lib/client-utils";
 import { Metadata } from "next";
 import z from "zod";
 

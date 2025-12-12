@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
     ],
     // domains: ['bytegrad.com'], // Alternative way to allow images from specific domains
   },
+  async redirects() {
+    return [
+      {
+        source: "/events",
+        destination: "/events/all",
+        permanent: false, // use true if the redirect is permanent
+      },
+    ];
+  },
 };
 
 export default nextConfig;

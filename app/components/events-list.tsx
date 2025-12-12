@@ -1,6 +1,6 @@
 import { EventoEvent } from "@prisma/client";
 import EventCard from "./event-card";
-import { getEvents, sleep } from "@/lib/utils";
+import { getEvents } from "@/lib/server-utils";
 import Pagination from "./pagination";
 
 interface EventsListProps {
