@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
         pathname: '/course-assets/images/**',
       },
     ],
-    // unoptimized: true,
+    unoptimized: true,
   },
   async redirects() {
     return [

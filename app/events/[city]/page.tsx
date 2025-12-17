@@ -23,13 +23,6 @@ export async function generateMetadata({ params }: EventsProps) : Promise<Metada
     };
 }
 
-// export async function generateStaticParams() {
-//     return [
-//         { slug : 'dj-practice-session' },
-//         { slug : 'all' },
-//     ];
-// }
-
 const pageNumberSchema = z.coerce.number().int().min(1).catch(1).optional();
 
 export default async function EventsPage({ params, searchParams }: EventsProps) {
@@ -65,5 +58,3 @@ export default async function EventsPage({ params, searchParams }: EventsProps) 
         </main>
     );
 }
-// export const dynamic = "force-dynamic";
-// export const revalidate = 0;
