@@ -1,8 +1,9 @@
 import { EventoEvent, Prisma } from "@prisma/client";
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
+import { unstable_cache } from "next/cache";
 
-export async function getEvents(city: string, page = 1): Promise<{ events: EventoEvent[]; eventCount: number }> {
+export const getEvents = unstable_cache (async (city: string, page = 1): Promise<{ events: EventoEvent[]; eventCount: number }> => {
 
   //const events = await prisma.eventoEvent.findMany(); // findMany never returns null, only an array.
 
@@ -35,9 +36,9 @@ export async function getEvents(city: string, page = 1): Promise<{ events: Event
     events,
     eventCount
   }
-}
+});
 
-export async function getEvent(slug: string): Promise<EventoEvent | null> {
+export const getEvent = unstable_cache(async (slug: string): Promise<EventoEvent | null> => {
   const event = await prisma.eventoEvent.findUnique({
     where: { slug },
   });
@@ -45,4 +46,4 @@ export async function getEvent(slug: string): Promise<EventoEvent | null> {
     notFound();
   }
   return event;
-}
+});

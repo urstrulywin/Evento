@@ -7,10 +7,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'bytegrad.com',
-        // pathname: '/course-assets/projects/evento/**',
+        pathname: '/course-assets/images/**',
       },
     ],
-    // domains: ['bytegrad.com'], // Alternative way to allow images from specific domains
+    // unoptimized: true,
   },
   async redirects() {
     return [

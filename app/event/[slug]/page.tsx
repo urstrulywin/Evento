@@ -1,8 +1,9 @@
 import H1 from "@/components/h1";
 import { EventoEvent } from "@/lib/types";
-import { capitalizeFirstLetter, getEvent, sleep } from "@/lib/client-utils";
+import { capitalizeFirstLetter, sleep } from "@/lib/client-utils";
 import { Metadata } from "next";
 import Image from "next/image";
+import { getEvent } from "@/lib/server-utils";
 
 interface EventSlug {
     params: Promise<{ slug: string }>;
