@@ -1,3 +1,5 @@
+import "server-only";
+
 import { EventoEvent, Prisma } from "@prisma/client";
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
