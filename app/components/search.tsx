@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import { Search as SearchIcon } from "lucide-react";
 
 export default function Search() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -9,27 +10,35 @@ export default function Search() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const city = inputRef.current?.value.trim();
 
-    if (city) {
-      router.push(`/events/${(city)}`);
-      // router.push(`/events/${encodeURIComponent(city)}`);
-    }
+    if (!city) return;
+
+    router.push(`/events/${encodeURIComponent(city)}`);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 flex w-full">
+    <form
+      onSubmit={handleSubmit}
+      role="search"
+      className="flex w-full max-w-md items-center overflow-hidden rounded-lg border shadow-sm"
+    >
+      <SearchIcon size={18} className="ml-3 text-zinc-400" />
+
       <input
         ref={inputRef}
         type="text"
-        placeholder="Enter city name"
-        className="mt-4 p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        placeholder="Search events by city..."
+        aria-label="Search events by city"
+        className="flex-1 px-3 py-3 outline-none placeholder:text-zinc-400"
       />
+
       <button
         type="submit"
-        className="ml-2 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-blue-700"
+        className="px-5 py-3 bg-indigo-500 text-white font-medium hover:bg-indigo-600 transition"
       >
-        Search Events
+        Search
       </button>
     </form>
   );
