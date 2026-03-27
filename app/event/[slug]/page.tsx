@@ -68,7 +68,7 @@ export default async function CityEventPage({ params }: EventSlug) {
             sizes="(max-width: 600px) 100vw, 600px"
             // priority
           />
-          <div className="flex flex-col sm:items-center md:items-start">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
             {/* display date of event */}
             <p>
               {new Date(event.date).toLocaleDateString("en-US", {
@@ -78,12 +78,12 @@ export default async function CityEventPage({ params }: EventSlug) {
                 day: "numeric",
               })}
             </p>
-            <H1 className="py-2 whitespace-nowrap lg:text-5xl">{event.name}</H1>
-            <p className="pb-1 italic whitespace-nowrap text-xl ">
+            <H1 className="whitespace-nowrap">{event.name}</H1>
+            <p className="italic text-xl">
               Organized by <span>{event.organizerName}</span>
             </p>
-            <p className="drop-shadow-lg">{event.location}</p>
-            <button className=" bg-white/20 text-lg p-1 mt-5 capitalize w-[95vw] sm:w-full rounded-md border-white/20 border-2 bg-blur state-effects">
+            <p>{event.location}</p>
+            <button className="text-lg p-2 w-full rounded-full bg-white/20 border-white/20 border-2 bg-blur state-effects">
               Get Tickets
             </button>
           </div>

@@ -12,7 +12,7 @@ export default function Pagination({
   nextPath: string | null;
 }) {
   return (
-    <section className="mx-auto mt-10 flex w-full max-w-6xl items-center justify-between px-6">
+    <section className="mx-auto flex w-full max-w-6xl items-center justify-between px-6">
       {prevPath ? (
         <Link href={prevPath} className={base}>
           <ArrowLeft size={18} />

@@ -6,25 +6,25 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="mx-auto max-w-6xl px-6 py-24 text-center flex flex-col items-center">
+      <section className="mx-auto max-w-6xl px-6 py-12 md:py-24 text-center flex flex-col gap-6 items-center">
         <H1>
           Discover <span className="text-indigo-600">Amazing Events</span> Near
           You
         </H1>
 
-        <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
+        <p className="text-lg text-muted-foreground max-w-2xl">
           Explore concerts, tech conferences, art exhibitions, food festivals,
           and many more events happening around you.
         </p>
 
-        <div className="mt-8 w-full max-w-xl">
+        <div className="max-w-xl">
           <Search />
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="mx-auto max-w-6xl px-6">
-        <div className="text-center mb-12">
+      <section className="mx-auto max-w-6xl p-6">
+        <div className="text-center mb-6">
           <h2 className="text-3xl font-semibold tracking-tight">
             Why Use Evento?
           </h2>
