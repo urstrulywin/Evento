@@ -78,7 +78,7 @@ export default async function CityEventPage({ params }: EventSlug) {
                 day: "numeric",
               })}
             </p>
-            <H1 className="whitespace-nowrap">{event.name}</H1>
+            <H1>{event.name}</H1>
             <p className="italic text-xl">
               Organized by <span>{event.organizerName}</span>
             </p>
